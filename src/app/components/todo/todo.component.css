@@ -1,40 +1,58 @@
 *{
-    font-family: sans-serif;
+  font-family: 'Architects Daughter', cursive;
 }
 body{ 
- height: 100%; 
- background: linear-gradient(to right, rgb(23, 178, 184), #dbdbdb);
+  display: flex;
+  justify-content: center;
 } 
 .container{
     display: flex;
     align-items: center;
-    width:100%;
+    width: 40%;
+    margin: 20px;
     flex-direction: column;
+    background: linear-gradient(to right, rgb(24, 133, 184), #b9fbf3fa);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.title{
+font-size: 60px;
+margin: 5px;
 }
 .input-box{
     width: 50%;
+    box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.75);
 }
 .add-btn{
-    background-color: rgb(23, 178, 184);
+    background-color: rgb(59, 59, 59);
+    color: white;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 12px;
     margin-top:5px;
-    width: 50%;
+    width: 15%;
+    box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.75);
 }
+
 .not-completed{
-    align-items: flex-start;
+  margin-right: 80px;
+}
+.not-completed-title{
+  font-size: 25px;
+  padding-top:10px;
 }
 .complete-btn{
-    background-color: rgb(228, 228, 228);
-    opacity: 70%;
+    background-color: rgb(59, 59, 59);
+    color: white;
+    margin-right: 50px;
 }
-.close {
-    position: absolute;
-    right: 12px;
-    top: 12px;
-    width: 12px;
-    height: 12px;
-    opacity: 0.3;
-  }
+.xBtn{
+  margin-left: 50px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
   .close:hover {
     opacity: 1;
   }
