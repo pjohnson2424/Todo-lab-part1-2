@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
-      rel="stylesheet"
-    />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="title">TODO LIST</h1>
-      <input class="input-box" type="text" #newTodo />
-      <button class="add-btn" (click)="addTodo(newTodo)">Add Todo!</button>
 
-      <h1 class="not-completed-title">NOT COMPLETED</h1>
-      <form class="form-container">
-        <ol *ngFor="let todo of todos" class="todo-container">
-          <div class="not-completed" *ngIf="!todo.completed">
-            <h3
-              class="todo-title"
-              [ngStyle]="{ color: todo.completed ? 'lightgreen' : 'white' }"
-            >
-              <button class="complete-btn" (click)="completeTodo(todo)">
-                Complete
-              </button>
-              {{ todo.task }} <button class="xBtn">X</button>
-            </h3>
-          </div>
-        </ol>
-      </form>
-      <h1>COMPLETED</h1>
-      <div *ngFor="let todo of todos" class="todo-container">
-        <div class="completed" *ngIf="todo.completed">
-          <h3
-            class="todo-title"
-            [ngStyle]="{ color: todo.completed ? 'lightgreen' : 'white' }"
-            (click)="completeTodo(todo)"
-          >
-            {{ todo.task }}
-          </h3>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">TODO LIST</h1>
+    <form #addTodoInputForm="ngForm" (ngSubmit)="addTask(addTodoInputForm); addTodoInputForm.reset()">
+      <input name="todoInput" type="text" placeholder="Add your to-do" ngModel />
+      <button class="addBtn">Add</button>
+    </form>
+    <h1 class="not-completed-title">NOT COMPLETED</h1>
+    <input type="text" placeholder="Filter List" [(ngModel)]="filter" />
+    <ul>
+      <li class="filter" *ngFor="let todo of todos |complete: filter; index as i" >
+        <div class="not-completed">
+          <span>
+            {{i+1}}.
+        </span>
+            <button class="complete-btn" *ngIf="!todo.completed" (click)="completeTask(todo)">
+              Complete
+            </button>
+            <span [ngStyle]="todo.completed && {'text-decoration': 'line-through'} "> {{ todo.task }} </span>
+           
+            <button class="xBtn" (click)="removeTask(i)">X</button>
         </div>
-      </div>
-    </div>
-  </body>
+      </li>
+    </ul>
+
+  </div>
+</body>
+
 </html>

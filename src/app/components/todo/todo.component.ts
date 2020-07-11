@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Todo } from '../../models/Todo';
+import {NgForm}  from '@angular/forms';
+
 
 @Component({
   selector: 'app-todo',
@@ -9,29 +11,21 @@ import { Todo } from '../../models/Todo';
 export class TodoComponent {
   todos: Todo[] = [];
 
-  constructor() {
-    let todo1: Todo = { task: 'Walk the dog', completed: false };
-    let todo2: Todo = { task: 'Clean my car', completed: false };
-    let todo3: Todo = { task: 'Go to class', completed: false };
-    let todo4: Todo = { task: 'Make dinner', completed: false };
-
-    this.todos.push(todo1);
-    this.todos.push(todo2);
-    this.todos.push(todo3);
-    this.todos.push(todo4);
+  completeTask(todo: Todo) {
+    todo.completed = true;
   }
 
-  ngOnInit(): void {}
-
-  addTodo(newTodo) {
-    if (newTodo.value != '') {
-      let todo: Todo = { task: newTodo.value, completed: false };
-      this.todos.push(todo);
-      newTodo.value = '';
-    }
+  addTask(addTodoInputForm: NgForm) {
+    this.todos.push(
+      {
+        task: addTodoInputForm.value.todoInput,
+        completed: false
+      }
+    );
+  }
+  removeTask(index: number){
+    this.todos.splice(index, 1);
   }
 
-  completeTodo(todo) {
-    todo.completed = !todo.completed;
-  }
+  filter: string = '';
 }
